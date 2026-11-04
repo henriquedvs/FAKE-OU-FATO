@@ -62,7 +62,8 @@ export default function App() {
       groupNames: ['Grupo 01', 'Grupo 02', 'Grupo 03', 'Grupo 04'],
       education: education || 'all',
       difficulty: difficulty || 'all',
-      playType: selectedPlayType
+      playType: selectedPlayType,
+      investigationTimeMinutes: 2.5
     };
 
     setMatchConfig(config);
@@ -299,6 +300,7 @@ export default function App() {
             totalRounds={matchConfig.totalRounds}
             questionsPerRound={matchConfig.questionsPerRound}
             totalQuestions={totalQuestions}
+            investigationTimeMinutes={matchConfig.investigationTimeMinutes}
           />
         )}
 

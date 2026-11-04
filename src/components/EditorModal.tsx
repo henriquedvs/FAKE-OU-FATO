@@ -14,7 +14,10 @@ import {
   Flame,
   Edit3,
   RotateCcw,
-  Wand2
+  Wand2,
+  Clock,
+  Minus,
+  Plus
 } from 'lucide-react';
 
 interface EditorModalProps {
@@ -49,6 +52,9 @@ export const EditorModal: React.FC<EditorModalProps> = ({
   const [playType, setPlayType] = useState<PlayType>(initialConfig?.playType || 'group');
   const [education, setEducation] = useState<EducationLevel | 'all'>(initialConfig?.education || 'all');
   const [difficulty, setDifficulty] = useState<DifficultyLevel | 'all'>(initialConfig?.difficulty || 'all');
+  const [investigationTimeMinutes, setInvestigationTimeMinutes] = useState<number>(
+    initialConfig?.investigationTimeMinutes || 2.5
+  );
   const [customGroupNames, setCustomGroupNames] = useState<string[]>(
     initialConfig?.groupNames || Array.from({ length: 8 }, (_, i) => `Grupo 0${i + 1}`)
   );
@@ -63,6 +69,23 @@ export const EditorModal: React.FC<EditorModalProps> = ({
     });
   };
 
+  const formatDigitalTime = (minutes: number) => {
+    const totalSecs = Math.round(minutes * 60);
+    const m = Math.floor(totalSecs / 60);
+    const s = totalSecs % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const formatTimeLabel = (minutes: number) => {
+    const totalSecs = Math.round(minutes * 60);
+    const m = Math.floor(totalSecs / 60);
+    const s = totalSecs % 60;
+    if (s === 0) {
+      return `${m} ${m === 1 ? 'minuto' : 'minutos'}`;
+    }
+    return `${m} min ${s} seg`;
+  };
+
   const handleStart = () => {
     onStartCustomMatch({
       totalRounds,
@@ -71,7 +94,8 @@ export const EditorModal: React.FC<EditorModalProps> = ({
       groupNames: customGroupNames.slice(0, groupsCount),
       education,
       difficulty,
-      playType
+      playType,
+      investigationTimeMinutes
     });
     onClose();
   };
@@ -227,7 +251,81 @@ export const EditorModal: React.FC<EditorModalProps> = ({
             </span>
           </div>
 
-          {/* 3. Número de Grupos e Edição de Nomes (se playType === 'group') */}
+          {/* 3. Tempo para Pesquisar em Cada Pergunta (Cronômetro) */}
+          <div className="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-blue-600" />
+                <span>Tempo para Pesquisar em Cada Pergunta</span>
+              </label>
+              <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-md">
+                {formatTimeLabel(investigationTimeMinutes)} ({formatDigitalTime(investigationTimeMinutes)})
+              </span>
+            </div>
+
+            {/* Stepper + Presets */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              {/* Stepper +/- */}
+              <div className="flex items-center justify-between sm:justify-start gap-1 bg-white p-1 rounded-xl border border-slate-200 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setInvestigationTimeMinutes((prev) => Math.max(0.5, prev - 0.5))}
+                  disabled={investigationTimeMinutes <= 0.5}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  title="Diminuir 30 segundos"
+                >
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <span className="px-2.5 text-xs font-black text-slate-900 font-display min-w-[60px] text-center">
+                  {formatDigitalTime(investigationTimeMinutes)}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setInvestigationTimeMinutes((prev) => Math.min(10, prev + 0.5))}
+                  disabled={investigationTimeMinutes >= 10}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  title="Aumentar 30 segundos"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Presets Grid */}
+              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 flex-1">
+                {[
+                  { val: 1, label: '1 min' },
+                  { val: 1.5, label: '1m30s' },
+                  { val: 2, label: '2 min' },
+                  { val: 2.5, label: '2m30s' },
+                  { val: 3, label: '3 min' },
+                  { val: 4, label: '4 min' },
+                  { val: 5, label: '5 min' }
+                ].map((item) => {
+                  const isSelected = investigationTimeMinutes === item.val;
+                  return (
+                    <button
+                      key={item.val}
+                      type="button"
+                      onClick={() => setInvestigationTimeMinutes(item.val)}
+                      className={`py-1.5 px-1 rounded-xl text-xs font-bold transition-all cursor-pointer border text-center ${
+                        isSelected
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <p className="text-[11px] text-slate-500 leading-tight">
+              Duração da contagem regressiva em tela para que os grupos investiguem e chequem as fontes antes de votarem.
+            </p>
+          </div>
+
+          {/* 4. Número de Grupos e Edição de Nomes (se playType === 'group') */}
           {playType === 'group' && (
             <div className="space-y-4 p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <div className="flex items-center justify-between">

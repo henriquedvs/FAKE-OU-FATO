@@ -47,6 +47,7 @@ export interface MatchConfig {
   education?: EducationLevel | 'all';
   difficulty?: DifficultyLevel | 'all';
   playType: PlayType;
+  investigationTimeMinutes?: number; // Minutes per question (e.g., 1, 2, 2.5, 3, 5)
 }
 
 export const DEFAULT_MATCH_CONFIG: MatchConfig = {
@@ -55,7 +56,8 @@ export const DEFAULT_MATCH_CONFIG: MatchConfig = {
   groupsCount: 4,
   education: 'all',
   difficulty: 'all',
-  playType: 'group'
+  playType: 'group',
+  investigationTimeMinutes: 2.5 // Default 2 min 30 s
 };
 
 export interface GameSettings {

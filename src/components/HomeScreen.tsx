@@ -370,7 +370,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
               </div>
               <p className="text-xs text-indigo-200/80 leading-relaxed mt-0.5">
-                Escolha até <strong>5 rodadas</strong>, até <strong>7 perguntas por rodada</strong> e de <strong>2 a 8 equipes</strong> com nomes customizados.
+                Escolha até <strong>5 rodadas</strong>, até <strong>7 perguntas</strong>, <strong>tempo de pesquisa (1 a 5 min)</strong> e de <strong>2 a 8 equipes</strong> com nomes customizados.
               </p>
             </div>
           </div>

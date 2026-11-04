@@ -36,9 +36,8 @@ interface QuestionScreenProps {
   totalRounds?: number;
   questionsPerRound?: number;
   totalQuestions?: number;
+  investigationTimeMinutes?: number;
 }
-
-const TOTAL_INVESTIGATION_TIME = 150; // 2 minutes 30 seconds (150 seconds)
 
 export const QuestionScreen: React.FC<QuestionScreenProps> = ({
   question,
@@ -56,10 +55,14 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
   onSoloVote,
   totalRounds = 2,
   questionsPerRound = 6,
-  totalQuestions = 12
+  totalQuestions = 12,
+  investigationTimeMinutes = 2.5
 }) => {
+  // Dynamic total investigation time in seconds (e.g. 2.5 min = 150s)
+  const totalInvestigationTime = Math.round(investigationTimeMinutes * 60);
+
   // Timer state
-  const [timeLeft, setTimeLeft] = useState<number>(TOTAL_INVESTIGATION_TIME);
+  const [timeLeft, setTimeLeft] = useState<number>(totalInvestigationTime);
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(true);
 
   // Reveal state
@@ -76,9 +79,9 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
   // Sound ref to prevent multiple triggers
   const lastTickTime = useRef<number | null>(null);
 
-  // Reset local question state when question prop changes
+  // Reset local question state when question prop changes or duration changes
   useEffect(() => {
-    setTimeLeft(TOTAL_INVESTIGATION_TIME);
+    setTimeLeft(totalInvestigationTime);
     setIsTimerRunning(true);
     setIsAnswerRevealed(false);
     setSelectedGroups([]);
@@ -86,7 +89,7 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
     setAwardedGroupIds([]);
     setSoloChoice(null);
     lastTickTime.current = null;
-  }, [question.id]);
+  }, [question.id, totalInvestigationTime]);
 
   // Timer interval countdown
   useEffect(() => {
@@ -185,12 +188,12 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
 
   // Add 30 seconds to timer for debate
   const handleAdd30s = () => {
-    setTimeLeft((prev) => Math.min(prev + 30, 300));
+    setTimeLeft((prev) => Math.min(prev + 30, totalInvestigationTime + 180));
   };
 
   // Reset timer
   const handleResetTimer = () => {
-    setTimeLeft(TOTAL_INVESTIGATION_TIME);
+    setTimeLeft(totalInvestigationTime);
     setIsTimerRunning(true);
   };
 
@@ -444,10 +447,10 @@ export const QuestionScreen: React.FC<QuestionScreenProps> = ({
             <button
               onClick={handleResetTimer}
               className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-xl flex items-center gap-1 transition-colors border border-slate-700 text-slate-300"
-              title="Reiniciar cronômetro para 02:30"
+              title={`Reiniciar cronômetro para ${formatTime(totalInvestigationTime)}`}
             >
               <RotateCcw className="w-3 h-3" />
-              <span>02:30</span>
+              <span>{formatTime(totalInvestigationTime)}</span>
             </button>
 
             <button
