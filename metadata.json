@@ -1,0 +1,6 @@
+{
+  "name": "FAKE OU FATO? — Educação Digital & Verificação de Notícias",
+  "description": "Jogo interativo para atividades escolares de checagem de fatos, identificação de fake news e educação midiática em salas de aula e televisores.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
