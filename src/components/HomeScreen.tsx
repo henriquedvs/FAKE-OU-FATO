@@ -62,7 +62,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <header className="w-full text-center space-y-3 pt-1">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-semibold shadow-2xs">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Educação Digital · Investigação & Combate à Desinformação</span>
+          <span>Educação Digital nas Escolas · Verificação de Notícias & Combate às Fake News</span>
         </div>
 
         {/* Brand Logo - Preserved Exactly */}
@@ -72,7 +72,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </h1>
 
         <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-          Atividade interativa de checagem com notícias reais, fontes verificáveis e adulterações propositais para exercitar o pensamento crítico.
+          Jogo educativo sobre fake news e verificação de notícias. Uma dinâmica interativa de verdadeiro ou falso para desenvolver o pensamento crítico e combater a desinformação.
         </p>
 
         {/* Feature Pills */}

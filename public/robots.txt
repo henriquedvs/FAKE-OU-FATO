@@ -1,0 +1,8 @@
+# robots.txt para FAKE OU FATO?
+# URL oficial: https://fakeoufatoeepm.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://fakeoufatoeepm.vercel.app/sitemap.xml

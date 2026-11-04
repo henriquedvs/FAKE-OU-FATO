@@ -30,20 +30,20 @@ export const RoundTransitionScreen: React.FC<RoundTransitionScreenProps> = ({
   const questionsCompleted = completedRound * questionsPerRound;
 
   return (
-    <div className="min-h-[calc(100vh-61px)] flex flex-col justify-center items-center py-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <div className="w-full bg-white rounded-3xl p-6 sm:p-10 shadow-google border border-slate-200/90 text-center space-y-6">
+    <div className="min-h-[calc(100vh-61px)] flex flex-col justify-center items-center py-4 sm:py-8 2xl:py-12 px-3 sm:px-6 lg:px-8 2xl:px-12 max-w-4xl 2xl:max-w-6xl mx-auto">
+      <div className="w-full bg-white rounded-3xl p-5 sm:p-10 2xl:p-12 shadow-google border border-slate-200/90 text-center space-y-4 sm:space-y-6 2xl:space-y-8">
         {/* Banner */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
-          <CheckCircle2 className="w-4 h-4" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs 2xl:text-sm font-bold uppercase tracking-wider">
+          <CheckCircle2 className="w-4 h-4 2xl:w-5 2xl:h-5" />
           <span>Etapa 0{completedRound} Concluída {totalRounds > 1 ? `de 0${totalRounds}` : ''}</span>
         </div>
 
         {/* Title */}
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 font-display">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl 2xl:text-6xl font-black text-slate-900 font-display">
             FIM DA RODADA 0{completedRound}!
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
+          <p className="text-xs sm:text-base 2xl:text-xl text-slate-600 max-w-xl 2xl:max-w-2xl mx-auto leading-relaxed">
             {isSolo ? (
               <span>
                 Você concluiu as perguntas desta etapa com sucesso! Confira sua pontuação antes de iniciar a{' '}
@@ -142,15 +142,15 @@ export const RoundTransitionScreen: React.FC<RoundTransitionScreenProps> = ({
         )}
 
         {/* Start Next Round Button */}
-        <div className="pt-2">
+        <div className="pt-2 2xl:pt-4">
           <button
             type="button"
             onClick={onStartRound2}
-            className="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-black text-base uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer mx-auto"
+            className="w-full sm:w-auto px-6 sm:px-10 2xl:px-14 py-3.5 sm:py-4 2xl:py-5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-black text-sm sm:text-base 2xl:text-xl uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-2.5 sm:gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer mx-auto min-h-[48px]"
           >
-            <Play className="w-5 h-5 fill-current" />
+            <Play className="w-5 h-5 2xl:w-6 2xl:h-6 fill-current" />
             <span>INICIAR RODADA 0{nextRound} — {questionsPerRound} {questionsPerRound === 1 ? 'PERGUNTA' : 'PERGUNTAS'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 2xl:w-5 2xl:h-5" />
           </button>
         </div>
       </div>

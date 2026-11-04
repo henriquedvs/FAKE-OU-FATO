@@ -173,19 +173,19 @@ export const FinalRankingScreen: React.FC<FinalRankingScreenProps> = ({
   const SoloIcon = soloRankInfo.icon;
 
   return (
-    <div className="min-h-[calc(100vh-61px)] py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
+    <div className="min-h-[calc(100vh-61px)] py-4 sm:py-8 2xl:py-12 px-3 sm:px-6 lg:px-8 2xl:px-12 max-w-5xl 2xl:max-w-7xl mx-auto space-y-5 sm:space-y-8 2xl:space-y-10">
       {/* Header Announcement */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider shadow-xs">
-          <Sparkles className="w-4 h-4 text-amber-500" />
+      <div className="text-center space-y-2.5 sm:space-y-3">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs 2xl:text-sm font-bold uppercase tracking-wider shadow-xs">
+          <Sparkles className="w-4 h-4 2xl:w-5 2xl:h-5 text-amber-500" />
           <span>Partida Finalizada — {totalQuestions} {totalQuestions === 1 ? 'Notícia Investigada' : 'Notícias Investigadas'}</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-black text-slate-900 font-display tracking-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl 2xl:text-7xl font-black text-slate-900 font-display tracking-tight">
           {isSolo ? 'SEU RESULTADO INDIVIDUAL' : 'RANKING FINAL'}
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-lg 2xl:text-xl text-slate-600 max-w-2xl 2xl:max-w-3xl mx-auto leading-relaxed">
           {isSolo ? (
             <span>Você concluiu a jornada de verificação das {totalQuestions} notícias reais e adulteradas!</span>
           ) : isMultipleWinners ? (
@@ -333,33 +333,33 @@ export const FinalRankingScreen: React.FC<FinalRankingScreenProps> = ({
       )}
 
       {/* Actions: Start New Game & Export Image */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-4">
         <button
           type="button"
           onClick={() => setIsImageModalOpen(true)}
-          className="w-full sm:w-auto px-7 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 cursor-pointer ring-2 ring-amber-400/30"
+          className="w-full sm:w-auto px-6 sm:px-7 2xl:px-9 py-3.5 sm:py-4 2xl:py-5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs sm:text-sm 2xl:text-base uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 cursor-pointer ring-2 ring-amber-400/30 min-h-[48px]"
           title="Criar e baixar imagem oficial com o resultado e os ganhadores em destaque"
         >
-          <ImageIcon className="w-4 h-4" />
+          <ImageIcon className="w-4 h-4 2xl:w-5 2xl:h-5" />
           <span>GERAR IMAGEM DO RANKING</span>
         </button>
 
         <button
           type="button"
           onClick={onNewGame}
-          className="w-full sm:w-auto px-7 py-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 cursor-pointer"
+          className="w-full sm:w-auto px-6 sm:px-7 2xl:px-9 py-3.5 sm:py-4 2xl:py-5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-black text-xs sm:text-sm 2xl:text-base uppercase tracking-wider rounded-2xl shadow-google flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
         >
-          <RotateCcw className="w-4 h-4" />
+          <RotateCcw className="w-4 h-4 2xl:w-5 2xl:h-5" />
           <span>INICIAR NOVA PARTIDA</span>
         </button>
 
         <button
           type="button"
           onClick={() => setShowReview(!showReview)}
-          className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm rounded-2xl border border-slate-200 shadow-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+          className="w-full sm:w-auto px-5 sm:px-6 2xl:px-8 py-3.5 sm:py-4 2xl:py-5 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm 2xl:text-base rounded-2xl border border-slate-200 shadow-xs flex items-center justify-center gap-2 transition-colors cursor-pointer min-h-[48px]"
         >
           <span>{showReview ? `Ocultar Relatório (${totalQuestions} Notícias)` : `Ver Relatório Completo (${totalQuestions} Notícias)`}</span>
-          {showReview ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          {showReview ? <ChevronUp className="w-4 h-4 2xl:w-5 2xl:h-5" /> : <ChevronDown className="w-4 h-4 2xl:w-5 2xl:h-5" />}
         </button>
       </div>
 

@@ -92,28 +92,28 @@ export const QuestionsCatalogScreen: React.FC<QuestionsCatalogScreenProps> = ({
     selectedDifficulty !== 'all';
 
   return (
-    <div className="min-h-[calc(100vh-61px)] py-6 sm:py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
+    <div className="min-h-[calc(100vh-61px)] py-4 sm:py-8 2xl:py-12 px-3 sm:px-6 lg:px-8 2xl:px-12 max-w-6xl 2xl:max-w-7xl mx-auto space-y-4 sm:space-y-6 2xl:space-y-8">
       {/* Top Navigation & Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-slate-200">
         <div>
           <button
             type="button"
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors mb-2 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-xs 2xl:text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors mb-2 cursor-pointer group min-h-[36px]"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft className="w-4 h-4 2xl:w-5 2xl:h-5 group-hover:-translate-x-0.5 transition-transform" />
             <span>Voltar para a Página Inicial</span>
           </button>
           
-          <div className="flex items-center gap-3">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
+          <div className="flex items-center flex-wrap gap-2 sm:gap-3">
+            <h1 className="text-xl sm:text-3xl md:text-4xl 2xl:text-5xl font-black text-slate-900 font-display tracking-tight">
               Banco Completo de Notícias Verificadas
             </h1>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-black">
+            <span className="px-3 py-1 2xl:px-4 2xl:py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs 2xl:text-sm font-black">
               {QUESTIONS_DATABASE.length} notícias
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl">
+          <p className="text-xs sm:text-sm 2xl:text-base text-slate-500 mt-1 max-w-3xl">
             Catálogo pedagógico com todas as notícias reais, fakes com alterações propositais, explicações detalhadas e fontes verificáveis com links.
           </p>
         </div>
@@ -122,16 +122,16 @@ export const QuestionsCatalogScreen: React.FC<QuestionsCatalogScreenProps> = ({
           <button
             type="button"
             onClick={resetFilters}
-            className="self-start sm:self-auto px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
+            className="self-start sm:self-auto px-3 py-1.5 2xl:px-4 2xl:py-2 text-xs 2xl:text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 min-h-[36px]"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3.5 h-3.5 2xl:w-4 2xl:h-4" />
             <span>Limpar Filtros</span>
           </button>
         )}
       </div>
 
       {/* Filter and Search Controls */}
-      <section aria-label="Filtros de busca" className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-google space-y-4">
+      <section aria-label="Filtros de busca" className="bg-white rounded-3xl p-4 sm:p-6 2xl:p-8 border border-slate-200/90 shadow-google space-y-4 2xl:space-y-6">
         {/* Search Bar */}
         <div className="relative">
           <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
